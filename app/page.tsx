@@ -1,22 +1,27 @@
-import { Card, CardContent, CardHeader, CardFooter, CardTitle } from '@/components/ui/card'
-import Image from 'next/image';
+"use client"
 
-function ProductCard({ title, category, price, brand, sale, rating, imageUrl }: { title: string, category: string, price: number, brand: string, sale: number, rating: string, imageUrl: string }) {
+import { Card, CardContent, CardHeader, CardFooter, CardTitle } from '@/components/ui/card'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+
+const url = "https://dummyjson.com/products"
+
+function ProductCard({ title, category, price, brand, sale, rating, imageUrl }: { title: string, category: string, price: number, brand: string, sale: number, rating: number, imageUrl: string }) {
   return (
     <Card className="text-center">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <Image src={imageUrl} alt='' width={300} height={300} />
+        <Image src={imageUrl} alt='' priority={true} width={300} height={150} />
         <div className='flex justify-end'>
-          <div className='flex justify-self-end bg-red-500 rounded-lg rotate-30 skew-y-6 w-48 -translate-y-6 shadow-lg justify-center'>
+          <div className='flex justify-self-end bg-red-500 rounded-lg rotate-30 skew-y-6 w-48 -translate-y-6 translate-x-3 shadow-lg justify-center'>
             <span className='text-white text-lg font-black text-3xl'>{price + '₴'}</span>
           </div>
           <br />
         </div>
         {brand} <br />
-        {sale > 0 ? <span>{sale}</span> : <></>}
+        {sale > 0 && sale < 100 ? <span>{sale}</span> : <></>}
       </CardContent>
       <CardFooter>
         {rating}
@@ -25,11 +30,22 @@ function ProductCard({ title, category, price, brand, sale, rating, imageUrl }: 
   )
 }
 
-
 export default function Home() {
+  const [productsData, setProductsData] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('https://dummyjson.com/products');
+      const data = await res.json();
+      setProductsData(data.products);
+    }
+
+    fetchData();
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ProductCard title='Hello World!' price={24.5} category='Clothes' brand='Nike' sale={0} rating='4.5/5' imageUrl="https://images.pexels.com/photos/4456815/pexels-photo-4456815.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"></ProductCard>
+    <main>
+      {productsData.map(product => <div key={product.id}><ProductCard title={product.title} brand={product.brand} category={product.category} price={product.price} sale={product.discountPercentage} rating={product.rating} imageUrl={product.images[0]} /></div>)}
     </main>
-  );
+  )
 }
