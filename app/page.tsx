@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 
 import { useEffect, useState } from 'react'
-import { Menu } from 'lucide-react'
+import Link from 'next/link'
 
 
 export default function Page() {
@@ -49,17 +49,18 @@ function ProductCard({ title, category, price, brand, rating, imageUrl }: { titl
 }
 
 
-function Header() {
+export function Header() {
   return (
     <header className='section'>
       <div className='header-container'>
         <div id='header-menu' className="flex flex-row text-center w-16 h-full">
-          <div className='inline-block header-menu-item'><a href='#'>Home</a></div>
+          <div className='inline-block header-menu-item'><a href='/'>Home</a></div>
           <div className='inline-block header-menu-item'><a href='#'>My account</a></div>
+          <div className='inline-block header-menu-item'><Link href='./login'>Login</Link></div>
         </div>
       </div>
       <div className="logo"></div>
-    </header >
+    </header>
   )
 }
 
