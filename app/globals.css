@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
@@ -74,3 +76,54 @@
       @apply bg-background text-foreground;
     }
   }
+
+html {
+  overflow-x: hidden;
+}
+
+::webkit-scrollbar {
+  width: 0;
+}
+
+.pt-sans-regular {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-sans-bold {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-sans-regular-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.pt-sans-bold-italic {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.section {
+  height: 10vh;
+  width: 100vw;
+}
+
+header {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  background-color: #fff; 
+} 
+
+
+
+
+
