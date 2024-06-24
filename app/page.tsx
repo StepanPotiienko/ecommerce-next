@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { HomeIcon, LogIn, User } from 'lucide-react'
 import Autoplay from "embla-carousel-autoplay"
 
+// TODO: Add functionality to add products to the card and then place an order.
 const userCart: Object[] = []
 
 export default function Page() {
@@ -41,7 +42,7 @@ export default function Page() {
   )
 }
 
-export function ProductCard({ title, category, price, brand, rating, imageUrl, imgW, imgH, addToCard }: { title: string, category: string, price: number, brand: string, rating: number, imageUrl: string, imgW: number, imgH: number, addToCard: boolean }) {
+export function ProductCard({ title, category, price, brand, rating, imageUrl, imgW, imgH, addToCard }: { title: string, category: string, price: string, brand: string, rating: any, imageUrl: string, imgW: number, imgH: number, addToCard: boolean }) {
   return (
     <>
       <card.Card className="text-center w-96 md:h-256 shadow-lg h-auto duration-500 sm:w-full">

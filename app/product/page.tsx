@@ -10,6 +10,7 @@ const Page = () => {
 
     const title: string | null = searchParams.get('title')
     const category: string | null = searchParams.get('category')
+    const brand: string | null = searchParams.get('brand')
     const price: string | null = searchParams.get('price')
     const rating: string | null = searchParams.get('rating')
     const imageUrl: string | null = searchParams.get('imageUrl')
@@ -17,7 +18,7 @@ const Page = () => {
     return (
         <>
             <Header />
-            <ProductCard title={title || ""} category={category || ""} price={price || 0} rating={rating || 0} imageUrl={imageUrl || ""} imgW={500} imgH={500} addToCard={false}></ProductCard>
+            <ProductCard title={title || ""} brand={brand || ""} category={category || ""} price={price || ""} rating={rating || 0} imageUrl={imageUrl || ""} imgW={500} imgH={500} addToCard={false}></ProductCard>
         </>
     )
 }
