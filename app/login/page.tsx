@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 
 
 import { Header } from '../page'
+import { Icon, MessageCircle } from 'lucide-react'
 
 
 const LoginPage = () => {
@@ -11,9 +12,17 @@ const LoginPage = () => {
         <div>
             <Header />
             {/* Here goes the login stuff */}
-            <card.Card>
-                <Button>Login with Telegram</Button>
-            </card.Card>
+            <div id='login-section' className='m-3 w-full'>
+                <card.Card>
+                    <card.CardHeader>
+                        <card.CardTitle>Login</card.CardTitle>
+                    </card.CardHeader>
+                    <card.CardContent>
+                        <Button>Login with Telegram</Button><br />
+                        <Button className='mt-1'>Login with Google Account</Button>
+                    </card.CardContent>
+                </card.Card>
+            </div>
         </div>
     )
 }
