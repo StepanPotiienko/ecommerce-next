@@ -12,7 +12,7 @@ import { MainSection } from './components/Main'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 
-import { isLoggedIn } from './login/page'
+import { isLoggedIn } from './UserSettings'
 
 // TODO: Add functionality to add products to the card and then place an order.
 const userCart: Object[] = []

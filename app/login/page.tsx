@@ -1,27 +1,87 @@
+"use client"
 
-import * as card from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
 import { Header } from '../components/Header'
 
-export const isLoggedIn: boolean = false
+const FormSchema = z.object({
+    username: z.string().min(2, {
+        message: "Username must be at least 2 characters.",
+    }),
+    password: z.string().min(8, {
+        message: "Password lenght must be more than 8!"
+    })
+})
 
-const LoginPage = () => {
+export function LoginPage() {
+    const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+        defaultValues: {
+            username: "",
+            password: "",
+        },
+    })
+
+    function onSubmit(data: z.infer<typeof FormSchema>) {
+        console.log(data)
+    }
+
     return (
-        <div>
+        <>
             <Header />
-            <div id='login-section' className='m-3 w-full'>
-                <card.Card>
-                    <card.CardHeader>
-                        <card.CardTitle>Login</card.CardTitle>
-                    </card.CardHeader>
-                    <card.CardContent>
-                        <Button className='hover:bg-blue-400'>Login with Telegram</Button><br />
-                        <Button className='mt-1 hover:bg-red-400'>Login with Google Account</Button>
-                    </card.CardContent>
-                </card.Card>
-            </div>
-        </div>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="h-96 m-4 shadow-lg p-6 flex flex-col justify-between items-stretch">
+                    <FormField
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Username</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="shadcn" {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    This is your public display name.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Password</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Very strong password..." {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    Keep it private and do not tell your friends it!
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Button type="submit">Submit</Button>
+                </form>
+            </Form>
+        </>
     )
 }
 

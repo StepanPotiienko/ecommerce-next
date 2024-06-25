@@ -181,3 +181,7 @@ footer {
   background-color: #000;
   padding: 3rem;
 }
+
+.login-input {
+  outline: 1px sold #000;
+}
