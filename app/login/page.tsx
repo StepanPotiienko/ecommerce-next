@@ -2,7 +2,9 @@
 import * as card from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
-import { Header } from '../page'
+import { Header } from '../components/Header'
+
+export const isLoggedIn: boolean = false
 
 const LoginPage = () => {
     return (

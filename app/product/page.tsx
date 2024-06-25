@@ -2,8 +2,9 @@
 
 import { useSearchParams } from 'next/navigation';
 
-import { Header } from "../page"
 import Image from 'next/image';
+
+import { Header } from '../components/Header'
 
 const Page = () => {
     const searchParams = useSearchParams()
