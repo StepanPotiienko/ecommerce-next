@@ -2,8 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 
-import { Header, ProductCard } from "../page";
-import { Heading1 } from 'lucide-react';
+import { Header } from "../page"
 import Image from 'next/image';
 
 const Page = () => {

@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 
 import Image from 'next/image'
 
-import { useEffect, useState } from 'react'
+import { ComponentElement, ReactNode, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { HomeIcon, LogIn, ShoppingCart } from 'lucide-react'
 import Autoplay from "embla-carousel-autoplay"
@@ -46,7 +46,7 @@ export default function Page() {
   )
 }
 
-export function ProductCard({ title, category, price, brand, rating, imageUrl, imgW, imgH, addToCard }: { title: string, category: string, price: string, brand: string, rating: any, imageUrl: string, imgW: number, imgH: number, addToCard: boolean }) {
+function ProductCard({ title, category, price, brand, rating, imageUrl, imgW, imgH, addToCard }: { title: string, category: string, price: string, brand: string, rating: any, imageUrl: string, imgW: number, imgH: number, addToCard: boolean }) {
   const productHash = getSHA256Hash((title + category + brand).replaceAll(" ", ""))
 
   return (
@@ -79,7 +79,7 @@ export function ProductCard({ title, category, price, brand, rating, imageUrl, i
   )
 }
 
-export function Header() {
+export function Header(): any {
   return (
     <header className='w-screen'>
       <div className='header-container flex flex-row justify-between'>
