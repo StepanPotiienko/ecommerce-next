@@ -29,7 +29,7 @@ const FormSchema = z.object({
     })
 })
 
-export function LoginPage() {
+export default function LoginPage() {
     const router = useRouter()
 
     let u_username: string = ""
@@ -95,5 +95,3 @@ export function LoginPage() {
         </>
     )
 }
-
-export default LoginPage
