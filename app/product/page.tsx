@@ -6,6 +6,10 @@ import Image from 'next/image';
 
 import { Header } from '../components/Header'
 
+function capitalizeFirstLetter(sequence: string) {
+    return sequence[0].toUpperCase() + sequence.slice(1);
+}
+
 const Page = () => {
     const searchParams = useSearchParams()
 
@@ -20,13 +24,12 @@ const Page = () => {
         <>
             <Header />
             <div className='w-screen h-screen flex flex-col justify-center items-center'>
-                <Image alt={title || ""} src={imageUrl || ""} width={1920} height={1080} className='w-screen max-w-screen-lg h-screen max-h-screen'></Image>
+                <Image alt={title || ""} src={imageUrl || ""} width={1920} height={1080} className='w-screen max-w-screen-lg h-screen max-h-screen transition-opacity opacity-0 duration-[2s]' onLoadingComplete={(image) => image.classList.remove('opacity-0')}></Image>
                 <h1 className='text-2xl'>{title}</h1>
                 <div id='description' className='flex flex-col'>
                     <ul>
-                        <li>Category: {category}</li>
-                        <li>Brand: {brand}</li>
-
+                        <li>Category: {capitalizeFirstLetter(category)}</li>
+                        <li>{brand != "" ? <span> Brand: {brand}</span> : <></>}</li>
                     </ul>
                 </div>
                 <div className='flex justify-end mt-16'>
